@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin: 0 10px 0 30px;
+    margin: 0 30px;
   }
   .items,
   .search {
@@ -20,11 +20,41 @@
     align-items: center;
     justify-content: space-between;
   }
+  .search {
+    border: 1px solid lightgray;
+    input {
+      border: none;
+      outline: none;
+      padding: 5px 10px;
+    }
+  }
   .avatar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid red;
+
     object-fit: cover;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    margin: 0 5px;
+  }
+  .counter {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    position: absolute;
+    right: -5px;
+    top: -5px;
   }
 }
