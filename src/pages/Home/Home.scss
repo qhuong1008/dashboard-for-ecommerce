@@ -2,5 +2,18 @@
   display: flex;
   .home-container {
     flex: 6;
+    .widgets {
+      width: 100%;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    .charts {
+      width: 100%;
+      display: flex;
+      padding: 5px 20px;
+      gap: 20px;
+    }
   }
 }
