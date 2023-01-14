@@ -54,10 +54,11 @@ const data = [
     amt: 2100,
   },
 ];
-const Chart = () => {
+const Chart = ({ aspect, title }) => {
   let demoUrl = "https://codesandbox.io/s/simple-line-chart-kec3v";
   return (
     <div className="chart">
+      <div className="title">{title}</div>
       <LineChart
         width={500}
         height={400}
@@ -68,6 +69,7 @@ const Chart = () => {
           left: 20,
           bottom: 5,
         }}
+        aspect={aspect}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
