@@ -12,31 +12,41 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import HubIcon from "@mui/icons-material/Hub";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { Link } from "react-router-dom";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useState, useContext } from "react";
 
 const Sidebar = () => {
+  const { dispatch } = useContext(DarkModeContext);
+
   return (
     <div className="sidebar">
       <div className="top">
-        <div className="logo">Admin Dashboard</div>
+        <Link to="/">
+          <div className="logo">Admin Dashboard</div>
+        </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">main</p>
+          <p className="sidebar-title">main</p>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
-          <p className="title">lists</p>
-
-          <li>
-            <PersonIcon className="icon" />
-            <span>Users</span>
-          </li>
-          <li>
-            <ProductionQuantityLimitsIcon className="icon" />
-            <span>Products</span>
-          </li>
+          <p className="sidebar-title">lists</p>
+          <Link to="/users">
+            <li>
+              <PersonIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
+          <Link to="/products">
+            <li>
+              <ProductionQuantityLimitsIcon className="icon" />
+              <span>Products</span>
+            </li>
+          </Link>
           <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
@@ -45,7 +55,7 @@ const Sidebar = () => {
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
           </li>
-          <p className="title">useful</p>
+          <p className="sidebar-title">useful</p>
 
           <li>
             <QueryStatsIcon className="icon" />
@@ -55,7 +65,7 @@ const Sidebar = () => {
             <NotificationsIcon className="icon" />
             <span>Notifications</span>
           </li>
-          <p className="title">service</p>
+          <p className="sidebar-title">service</p>
 
           <li>
             <SettingsSystemDaydreamIcon className="icon" />
@@ -69,7 +79,7 @@ const Sidebar = () => {
             <SettingsIcon className="icon" />
             <span>Settings</span>
           </li>
-          <p className="title">user</p>
+          <p className="sidebar-title">user</p>
 
           <li>
             <AssignmentIndIcon className="icon" />
@@ -81,9 +91,15 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="bottom">
-        <div className="color-option"></div>
-        <div className="color-option"></div>
+      <div className="sidebar-bottom">
+        <div
+          className="color-option"
+          onClick={() => dispatch({ type: "LIGHT" })}
+        ></div>
+        <div
+          className="color-option"
+          onClick={() => dispatch({ type: "DARK" })}
+        ></div>
       </div>
     </div>
   );
