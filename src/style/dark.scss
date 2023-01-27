@@ -1,6 +1,14 @@
 .app.dark {
-  background-color: #222;
-  color: rgb(156, 156, 156);
+  color: rgb(173, 173, 173);
+
+  .home {
+    background-color: #222;
+  }
+  .home-container,
+  .list-container {
+    background-color: #222;
+  }
+
   .table {
     background-color: #111;
     .tableCell {
@@ -9,6 +17,7 @@
   }
   .navbar {
     color: #999;
+    background-color: rgb(29, 29, 29);
     border-color: #333;
     .search {
       border-color: gray;
@@ -39,13 +48,28 @@
   }
   .datatable {
     .datagrid {
-      color: gray;
+      color: rgb(179, 178, 178);
       border: none;
       .viewButton,
       .deleteButton,
       .cellStatus {
-        color: gray;
+        color: rgb(179, 178, 178);
         border-color: gray;
+        transition: all 0.5s ease;
+        &:hover {
+          color: white;
+          border-color: white;
+        }
+      }
+    }
+    .addBtn {
+      color: rgb(179, 178, 178);
+      background-color: #222;
+      border-color: gray;
+      transition: all 0.5s ease;
+      &:hover {
+        color: white;
+        border-color: white;
       }
     }
   }
@@ -60,5 +84,51 @@
   input {
     background-color: transparent;
     color: gray;
+  }
+  .singleContainer {
+    color: rgb(179, 178, 178) !important;
+    background-color: #222;
+    .left {
+      .itemTitle,
+      .itemValue {
+        color: rgb(148, 148, 148) !important;
+      }
+      .itemKey {
+        color: #777 !important;
+      }
+      .editButton {
+        background-color: inherit;
+        border: 1px solid grey;
+        color: rgb(179, 178, 178) !important;
+      }
+    }
+    .bottom {
+      .title {
+        color: rgb(179, 178, 178) !important;
+      }
+    }
+  }
+  .newContainer {
+    background-color: #222;
+    color: rgb(179, 178, 178) !important;
+    .top {
+      h1 {
+        color: rgb(179, 178, 178) !important;
+      }
+    }
+    .bottom {
+      .right {
+        button {
+          background-color: inherit;
+          border: 1px solid gray;
+          color: rgb(179, 178, 178);
+          transition: all 0.5s ease;
+          &:hover {
+            color: white;
+            border-color: white;
+          }
+        }
+      }
+    }
   }
 }

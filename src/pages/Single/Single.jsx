@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { userSelector } from "../../redux/selectors";
+import { loadUserById } from "../../redux/actions/UserAction";
 import "./Single.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import List from "../../components/Table/Table";
 
-const Single = () => {
+const Single = ({ type }) => {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+  const isLoading = useSelector((state) => state.user.loading);
+
+  useEffect(() => {
+    dispatch(loadUserById(params.userId));
+  }, []);
+  if (isLoading) {
+    return <>loading..</>;
+  }
+
   return (
     <div className="single">
       <Sidebar />
@@ -23,27 +39,75 @@ const Single = () => {
                   alt=""
                 />
               </div>
-              <div className="details">
-                <h1 className="itemTitle">Alissa Violet</h1>
-                <div className="detailItem">
-                  <div className="itemKey">Email:</div>
-                  <div className="itemValue">alissa23@gmail.com</div>
-                </div>
-                <div className="detailItem">
-                  <div className="itemKey">Phone:</div>
-                  <div className="itemValue">+1 234 567 89</div>
-                </div>
-                <div className="detailItem">
-                  <div className="itemKey">Address:</div>
-                  <div className="itemValue">
-                    Elton st. 234 Garden Yd. New York
+              {type === "User" && (
+                <div className="details">
+                  <h1 className="itemTitle">{user.HoTen} </h1>
+                  <div className="detailItem">
+                    <div className="itemKey">User Id:</div>
+                    <div className="itemValue">{user.MaNguoiDung}</div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Date of birth:</div>
+                    <div className="itemValue">{user.NgaySinh}</div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Role:</div>
+                    <div className="itemValue">
+                      {user.RoleID === "001" ? "Client" : "Administrator"}
+                    </div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Address:</div>
+                    <div className="itemValue">{user.DiaChi}</div>
                   </div>
                 </div>
-                <div className="detailItem">
-                  <div className="itemKey">Country:</div>
-                  <div className="itemValue">USA</div>
+              )}
+              {type === "Product" && (
+                <div className="details">
+                  <h1 className="itemTitle">Product</h1>
+                  <div className="detailItem">
+                    <div className="itemKey">Email:</div>
+                    <div className="itemValue">alissa23@gmail.com</div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Phone:</div>
+                    <div className="itemValue">+1 234 567 89</div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Address:</div>
+                    <div className="itemValue">
+                      Elton st. 234 Garden Yd. New York
+                    </div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Country:</div>
+                    <div className="itemValue">USA</div>
+                  </div>
                 </div>
-              </div>
+              )}
+              {type === "Order" && (
+                <div className="details">
+                  <h1 className="itemTitle">Order</h1>
+                  <div className="detailItem">
+                    <div className="itemKey">Email:</div>
+                    <div className="itemValue">alissa23@gmail.com</div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Phone:</div>
+                    <div className="itemValue">+1 234 567 89</div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Address:</div>
+                    <div className="itemValue">
+                      Elton st. 234 Garden Yd. New York
+                    </div>
+                  </div>
+                  <div className="detailItem">
+                    <div className="itemKey">Country:</div>
+                    <div className="itemValue">USA</div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="right">

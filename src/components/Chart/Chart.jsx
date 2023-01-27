@@ -1,12 +1,14 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import {
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
+  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import "./Chart.scss";
 
@@ -54,14 +56,14 @@ const data = [
     amt: 2100,
   },
 ];
+
 const Chart = ({ aspect, title }) => {
-  let demoUrl = "https://codesandbox.io/s/simple-line-chart-kec3v";
   return (
     <div className="chart">
       <div className="title">{title}</div>
-      <LineChart
+      <BarChart
         width={500}
-        height={400}
+        height={490}
         data={data}
         margin={{
           top: 5,
@@ -69,21 +71,15 @@ const Chart = ({ aspect, title }) => {
           left: 20,
           bottom: 5,
         }}
-        aspect={aspect}
+        barSize={20}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line
-          type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-      </LineChart>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Bar dataKey="pv" fill="#8884d8" background={{ fill: "#eee" }} />
+      </BarChart>
     </div>
   );
 };

@@ -2,8 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
-import Single from "./pages/Single/Single";
-import New from "./pages/New/New";
+import SingleUser from "./pages/Single/SingleUser";
+import SingleProduct from "./pages/Single/SingleProduct";
+import SingleOrder from "./pages/Single/SingleOrder";
+import NewUser from "./pages/New/NewUser";
+import NewProduct from "./pages/New/NewProduct";
+import NewProductType from "./pages/New/NewProductType";
+import Loading from "./components/Loading/Loading";
 import { userInputs, productInputs } from "./formSource";
 import "./style/dark.scss";
 import { useState, useContext } from "react";
@@ -19,22 +24,22 @@ function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
-              />
+              <Route index element={<List listType="User" />} />
+              <Route path="info/:userId" element={<SingleUser />} />
+              <Route path="new" element={<NewUser />} />
             </Route>
             <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
-              />
+              <Route index element={<List listType="Product" />} />
+              <Route path="info/:productId" element={<SingleProduct />} />
+              <Route path="new" element={<NewProduct />} />
+              <Route path="new/type" element={<NewProductType />} />
+            </Route>
+            <Route path="orders">
+              <Route index element={<List listType="Order" />} />
+              <Route path="info/:orderId" element={<SingleOrder />} />
             </Route>
           </Route>
+          <Route path="/loading" element={<Loading />} />
         </Routes>
       </BrowserRouter>
     </div>

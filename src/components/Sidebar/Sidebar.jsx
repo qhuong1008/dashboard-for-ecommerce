@@ -23,17 +23,19 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/">
-          <div className="logo">Admin Dashboard</div>
+          <div className="logo">ADMIN DASHBOARD</div>
         </Link>
       </div>
-      <hr />
+
       <div className="center">
         <ul>
           <p className="sidebar-title">main</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <p className="sidebar-title">lists</p>
           <Link to="/users">
             <li>
@@ -47,10 +49,12 @@ const Sidebar = () => {
               <span>Products</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
+          <Link to="/orders">
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Orders</span>
+            </li>
+          </Link>
           <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>

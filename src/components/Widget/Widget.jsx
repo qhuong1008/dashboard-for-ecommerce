@@ -6,12 +6,10 @@ import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import PaidIcon from "@mui/icons-material/Paid";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 const Widget = ({ type }) => {
-  console.log("type:", type);
   let data;
   // temporary
   const amount = 100;
   const difference = 20;
-  console.log(data);
 
   switch (type) {
     case "user":

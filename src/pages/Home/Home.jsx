@@ -21,7 +21,7 @@ const Home = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart />
+          <Chart title="title" />
         </div>
         <div className="list-container">
           <div className="list-title">Lastest Transactions</div>

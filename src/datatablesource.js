@@ -1,40 +1,138 @@
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "MaNguoiDung", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
-    width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
-        </div>
-      );
-    },
+    field: "TenDangNhap",
+    headerName: "Username",
+    width: 180,
   },
   {
-    field: "email",
-    headerName: "Email",
-    width: 230,
+    field: "HoTen",
+    headerName: "Fullname",
+    width: 180,
   },
 
   {
-    field: "age",
-    headerName: "Age",
-    width: 100,
+    field: "NgaySinh",
+    headerName: "Date of birth",
+    width: 150,
   },
   {
-    field: "status",
-    headerName: "Status",
-    width: 160,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
-        </div>
-      );
-    },
+    field: "DiaChi",
+    headerName: "Address",
+    width: 180,
+  },
+  {
+    field: "DaXoa",
+    headerName: "Deleted",
+    width: 120,
+  },
+];
+export const productColumns = [
+  {
+    field: "MaSP",
+    headerName: "Product Id",
+    width: 70,
+  },
+  {
+    field: "TenSP",
+    headerName: "Product Name",
+    width: 120,
+  },
+  {
+    field: "Gia",
+    headerName: "Price",
+    width: 120,
+  },
+  {
+    field: "ChiTiet",
+    headerName: "Info",
+    width: 120,
+  },
+  {
+    field: "Hinh",
+    headerName: "Image",
+    width: 120,
+  },
+  {
+    field: "TenLoaiSanPham",
+    headerName: "Product Type",
+    width: 120,
+  },
+  {
+    field: "DaXoa",
+    headerName: "Deleted",
+    width: 120,
+  },
+];
+
+export const productTypeColumns = [
+  {
+    field: "MaLoaiSP",
+    headerName: "Product Type Id",
+    width: 200,
+  },
+  {
+    field: "TenLoaiSanPham",
+    headerName: "Product Name",
+    width: 300,
+  },
+  {
+    field: "DaXoa",
+    headerName: "Deleted",
+    width: 120,
+  },
+];
+
+export const orderColumns = [
+  {
+    field: "MaHoaDon",
+    headerName: "Order Id",
+    width: 70,
+  },
+  {
+    field: "HoTen",
+    headerName: "Client Name",
+    width: 120,
+  },
+  {
+    field: "MaKhachHang",
+    headerName: "Client Id",
+    width: 120,
+  },
+  {
+    field: "TongThanhToan",
+    headerName: "Total Bill",
+    width: 120,
+  },
+  {
+    field: "DiaChiGiaoHang",
+    headerName: "Address",
+    width: 120,
+  },
+  {
+    field: "SoDienThoai",
+    headerName: "Phone",
+    width: 120,
+  },
+  {
+    field: "ThoiGianGiaoHang",
+    headerName: "Delivery Time",
+    width: 120,
+  },
+  {
+    field: "TrangThaiGiaoHang",
+    headerName: "Delivery Status",
+    width: 120,
+  },
+  {
+    field: "TrangThaiDonHang",
+    headerName: "Order Status",
+    width: 120,
+  },
+  {
+    field: "TrangThaiThanhToan",
+    headerName: "Payment Status",
+    width: 120,
   },
 ];
 
@@ -121,3 +219,20 @@ export const userRows = [
     age: 65,
   },
 ];
+
+// MUC THAM KHAO
+// export const userColumns = [
+//   { field: "MaNguoiDung", headerName: "ID", width: 70 },
+//   {
+//     field: "TenDangNhap",
+//     headerName: "Username",
+//     width: 180,
+//     renderCell: (params) => {
+//       return (
+//         <div className="cellWithImg">
+//           <img className="cellImg" src={params.row.img} alt="avatar" />
+//           {params.row.username}
+//         </div>
+//       );
+//     },
+//   },

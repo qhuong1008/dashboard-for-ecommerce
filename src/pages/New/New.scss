@@ -28,12 +28,12 @@
         }
       }
       .right {
-        flex: 2;
-        form {
+        flex: 3;
+        .form {
           display: flex;
           flex-wrap: wrap;
           gap: 20px;
-          justify-content: space-around;
+          justify-content: flex-start;
 
           label {
             display: flex;
