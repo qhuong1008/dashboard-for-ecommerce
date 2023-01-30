@@ -17,6 +17,10 @@ export const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS";
 export const DELETE_PRODUCT_FAIL = "DELETE_PRODUCT_FAIL";
 export const DELETE_PRODUCT_TYPE_SUCCESS = "DELETE_PRODUCT_TYPE_SUCCESS";
 export const DELETE_PRODUCT_TYPE_FAIL = "DELETE_PRODUCT_TYPE_FAIL";
+export const EDIT_PRODUCT_SUCCESS = "EDIT_PRODUCT_SUCCESS";
+export const EDIT_PRODUCT_FAIL = "EDIT_PRODUCT_FAIL";
+export const FILTER_PRODUCT = "FILTER_PRODUCT";
+export const FILTER_PRODUCT_TYPE = "FILTER_PRODUCT_TYPE";
 
 export const loadAllProducts = () => async (dispatch) => {
   dispatch({
@@ -131,4 +135,33 @@ export const deleteProductTypeById = (id) => async (dispatch) => {
         payload: error,
       });
     });
+};
+
+export const editProduct = (product) => async (dispatch) => {
+  ProductApi.editProduct(product)
+    .then(() => {
+      dispatch({
+        type: EDIT_PRODUCT_SUCCESS,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: EDIT_PRODUCT_FAIL,
+        payload: error,
+      });
+    });
+};
+
+export const filterProduct = (searchValue) => (dispatch) => {
+  dispatch({
+    type: FILTER_PRODUCT,
+    payload: searchValue,
+  });
+};
+
+export const filterProductType = (searchValue) => (dispatch) => {
+  dispatch({
+    type: FILTER_PRODUCT_TYPE,
+    payload: searchValue,
+  });
 };

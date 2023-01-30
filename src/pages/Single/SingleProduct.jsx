@@ -9,6 +9,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import List from "../../components/Table/Table";
 import Loading from "../../components/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const SingleProduct = () => {
   const params = useParams();
@@ -19,9 +20,6 @@ const SingleProduct = () => {
   useEffect(() => {
     dispatch(loadProductById(params.productId));
   }, []);
-  if (isLoading) {
-    return <>loading..</>;
-  }
 
   return (
     <div className="single">
@@ -30,7 +28,9 @@ const SingleProduct = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to={`/products/edit/${params.productId}`}>
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="singleTitle">Information</h1>
             {isLoading ? (
               <Loading />

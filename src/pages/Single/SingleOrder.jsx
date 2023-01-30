@@ -9,13 +9,14 @@ import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import List from "../../components/Table/Table";
 import Loading from "../../components/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const SingleOrder = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const order = useSelector(orderSelector);
   const isLoading = useSelector((state) => state.order.loading);
-  console.log(order);
+
   useEffect(() => {
     dispatch(loadOrderById(params.orderId));
   }, []);
@@ -27,16 +28,11 @@ const SingleOrder = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to={`/orders/edit/${params.orderId}`}>
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="singleTitle">Information</h1>
             <div className="itemInfo">
-              {/* <div className="item">
-                    <img
-                    src="https://cf.shopee.vn/file/bf0f0a48f63cea8298a2373d62e597d0"
-                    className="itemImg"
-                    alt=""
-                    />
-                </div> */}
               {isLoading ? (
                 <Loading />
               ) : (

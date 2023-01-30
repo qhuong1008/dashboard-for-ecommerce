@@ -10,6 +10,9 @@ export const DELETE_SINGLE_USER_SUCCESS = "DELETE_SINGLE_USER_SUCCESS";
 export const DELETE_SINGLE_USER_FAIL = "DELETE_SINGLE_USER_FAIL";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
 export const ADD_USER_FAIL = "ADD_USER_FAIL";
+export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
+export const EDIT_USER_FAIL = "EDIT_USER_FAIL";
+export const FILTER_USER = "FILTER_USER";
 
 export const loadUserList = () => async (dispatch) => {
   dispatch({
@@ -76,4 +79,25 @@ export const deleteUserById = (id) => async (dispatch) => {
         payload: error,
       });
     });
+};
+
+export const editUser = (user) => async (dispatch) => {
+  UserApi.editUser(user)
+    .then(() => {
+      dispatch({
+        type: EDIT_USER_SUCCESS,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: EDIT_USER_FAIL,
+        payload: error,
+      });
+    });
+};
+export const FilterUser = (searchValue) => (dispatch) => {
+  dispatch({
+    type: FILTER_USER,
+    payload: searchValue,
+  });
 };

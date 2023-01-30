@@ -1,29 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Table.scss";
-import PropTypes from "prop-types";
-import { alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import TableSortLabel from "@mui/material/TableSortLabel";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import DeleteIcon from "@mui/icons-material/Delete";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import { visuallyHidden } from "@mui/utils";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { orderListSelector } from "../../redux/selectors";
+import { loadOrderList } from "../../redux/actions/OrderAction";
+import Loading from "../../components/Loading/Loading";
 
 const List = () => {
+  const isLoading = useSelector((state) => state.order.loading);
+
+  // get data
+  const dispatch = useDispatch();
+  let orderList = useSelector(orderListSelector);
+  orderList = orderList.filter((order) => {
+    return order.DaXoa === false;
+  });
+  orderList = orderList.slice(0, 5);
+  useEffect(() => {
+    dispatch(loadOrderList());
+  }, []);
   const rows = [
     {
       id: 1143155,
@@ -81,31 +83,58 @@ const List = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Tracking ID</TableCell>
-            <TableCell className="tableCell">Product</TableCell>
-            <TableCell className="tableCell">Customer</TableCell>
-            <TableCell className="tableCell">Date</TableCell>
-            <TableCell className="tableCell">Amount</TableCell>
-            <TableCell className="tableCell">Payment Method</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
+            <TableCell className="tableCell">Order ID</TableCell>
+            <TableCell className="tableCell">Client Name</TableCell>
+            <TableCell className="tableCell">Client Id</TableCell>
+            <TableCell className="tableCell">Total Bill</TableCell>
+            <TableCell className="tableCell">Address</TableCell>
+            <TableCell className="tableCell">Phone</TableCell>
+            <TableCell className="tableCell">Delivery Time</TableCell>
+            <TableCell className="tableCell">Delivery Status</TableCell>
+            <TableCell className="tableCell">Order Status</TableCell>
+            <TableCell className="tableCell">Payment Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className="tableCell">{row.id}</TableCell>
-              <TableCell className="tableCell">
+          {orderList.map((orderList) => (
+            <TableRow key={orderList.id}>
+              <TableCell className="tableCell">{orderList.MaHoaDon}</TableCell>
+              {/* <TableCell className="tableCell">
                 <div className="cellWrapper">
-                  <img src={row.img} alt="" className="image" />
-                  {row.product}
+                  <img src={orderList.img} alt="" className="image" />
+                  {orderList.product}
                 </div>
-              </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
+              </TableCell> */}
+              <TableCell className="tableCell">{orderList.HoTen}</TableCell>
               <TableCell className="tableCell">
-                <span className={`status ${row.status}`}>{row.status}</span>
+                {orderList.MaKhachHang}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.TongThanhToan}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.DiaChiGiaoHang}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.SoDienThoai}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.ThoiGianGiaoHang}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.TrangThaiGiaoHang}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.TrangThaiDonHang}
+              </TableCell>
+              <TableCell className="tableCell">
+                {orderList.TrangThaiThanhToan}
+              </TableCell>
+
+              <TableCell className="tableCell">
+                <span className={`status ${orderList.status}`}>
+                  {orderList.status}
+                </span>
               </TableCell>
             </TableRow>
           ))}

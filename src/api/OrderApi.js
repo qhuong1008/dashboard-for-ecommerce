@@ -6,5 +6,7 @@ const loadAllOrders = async () => {
 const getOrderById = async (id) => {
   return await axiosInstance.get(`/api/hoadon/orderId/${id}`);
 };
-
-export { loadAllOrders, getOrderById };
+const editOrder = async (order) => {
+  return await axiosInstance.post("api/hoadon/edit", order);
+};
+export { loadAllOrders, getOrderById, editOrder };

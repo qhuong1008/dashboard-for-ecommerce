@@ -13,6 +13,9 @@ import { userInputs, productInputs } from "./formSource";
 import "./style/dark.scss";
 import { useState, useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import EditUser from "./pages/Edit/EditUser";
+import EditProduct from "./pages/Edit/EditProduct";
+import EditOrder from "./pages/Edit/EditOrder";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -27,16 +30,19 @@ function App() {
               <Route index element={<List listType="User" />} />
               <Route path="info/:userId" element={<SingleUser />} />
               <Route path="new" element={<NewUser />} />
+              <Route path="edit/:userId" element={<EditUser />} />
             </Route>
             <Route path="products">
               <Route index element={<List listType="Product" />} />
               <Route path="info/:productId" element={<SingleProduct />} />
               <Route path="new" element={<NewProduct />} />
               <Route path="new/type" element={<NewProductType />} />
+              <Route path="edit/:productId" element={<EditProduct />} />
             </Route>
             <Route path="orders">
               <Route index element={<List listType="Order" />} />
               <Route path="info/:orderId" element={<SingleOrder />} />
+              <Route path="edit/:orderId" element={<EditOrder />} />
             </Route>
           </Route>
           <Route path="/loading" element={<Loading />} />

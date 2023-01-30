@@ -134,6 +134,11 @@ export const orderColumns = [
     headerName: "Payment Status",
     width: 120,
   },
+  {
+    field: "DaXoa",
+    headerName: "Deleted",
+    width: 120,
+  },
 ];
 
 //temporary data

@@ -9,6 +9,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import List from "../../components/Table/Table";
 import Loading from "../../components/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const SingleUser = () => {
   const params = useParams();
@@ -26,7 +27,9 @@ const SingleUser = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to={`/users/edit/${params.userId}`}>
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="singleTitle">Information</h1>
             {isLoading ? (
               <Loading />

@@ -9,11 +9,15 @@ import {
   ADD_USER_FAIL,
   DELETE_SINGLE_USER_SUCCESS,
   DELETE_SINGLE_USER_FAIL,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAIL,
+  FILTER_USER,
 } from "../actions/UserAction";
 
 const initialState = {
   userList: [],
   user: {},
+  userFilter: "",
   loading: false,
   error: null,
 };
@@ -67,6 +71,20 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload.error,
+      };
+    case EDIT_USER_SUCCESS:
+      return {
+        ...state,
+      };
+    case EDIT_USER_FAIL:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+    case FILTER_USER:
+      return {
+        ...state,
+        userFilter: action.payload,
       };
     default:
       return state;

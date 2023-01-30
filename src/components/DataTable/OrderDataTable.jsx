@@ -4,9 +4,14 @@ import { DataGrid } from "@mui/x-data-grid";
 import { orderColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { orderListSelector } from "../../redux/selectors";
-import { loadOrderList } from "../../redux/actions/OrderAction";
+import {
+  orderListSelector,
+  ordersRemainingSelector,
+} from "../../redux/selectors";
+import { loadOrderList, FilterOrder } from "../../redux/actions/OrderAction";
 import Loading from "../../components/Loading/Loading";
+import SearchIcon from "@mui/icons-material/Search";
+
 const OrderDataTable = () => {
   // get links
   let link = "/orders/new";
@@ -14,9 +19,12 @@ const OrderDataTable = () => {
 
   const isLoading = useSelector((state) => state.order.loading);
 
+  const handleOrderChange = (searchValue) => {
+    dispatch(FilterOrder(searchValue));
+  };
   // get data
   const dispatch = useDispatch();
-  const orderList = useSelector(orderListSelector);
+  const orderList = useSelector(ordersRemainingSelector);
   const orderRows = orderList;
   useEffect(() => {
     dispatch(loadOrderList());
@@ -44,6 +52,14 @@ const OrderDataTable = () => {
       <div className="datatable">
         <div className="datatableTitle">
           <span>Order List</span>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => handleOrderChange(e.target.value)}
+            />
+            <SearchIcon />
+          </div>
         </div>
       </div>
       {isLoading ? (

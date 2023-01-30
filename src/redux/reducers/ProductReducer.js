@@ -16,11 +16,17 @@ import {
   DELETE_PRODUCT_FAIL,
   DELETE_PRODUCT_TYPE_SUCCESS,
   DELETE_PRODUCT_TYPE_FAIL,
+  EDIT_PRODUCT_SUCCESS,
+  EDIT_PRODUCT_FAIL,
+  FILTER_PRODUCT,
+  FILTER_PRODUCT_TYPE,
 } from "../actions/ProductAction";
 const initialState = {
   productList: [],
   product: {},
   productTypes: [],
+  filterProduct: "",
+  filterProductType: "",
   loading: false,
   error: null,
 };
@@ -110,6 +116,23 @@ export const ProductReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload.error,
+      };
+    case EDIT_PRODUCT_SUCCESS:
+      return { ...state };
+    case EDIT_PRODUCT_FAIL:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+    case FILTER_PRODUCT:
+      return {
+        ...state,
+        filterProduct: action.payload,
+      };
+    case FILTER_PRODUCT_TYPE:
+      return {
+        ...state,
+        filterProductType: action.payload,
       };
     default:
       return state;

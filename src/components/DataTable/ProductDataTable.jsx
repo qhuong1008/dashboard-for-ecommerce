@@ -7,15 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   productListSelector,
   productTypeListSelector,
+  productsRemainingSelector,
+  productTypeRemainingSelector,
 } from "../../redux/selectors";
 import {
   loadAllProducts,
   getAllProductType,
   deleteProductById,
   deleteProductTypeById,
+  filterProduct,
+  filterProductType,
 } from "../../redux/actions/ProductAction";
 import Loading from "../../components/Loading/Loading";
 import { ConstructionOutlined } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const ProductDataTable = () => {
   // get links
@@ -27,8 +32,9 @@ const ProductDataTable = () => {
 
   // get data
   const dispatch = useDispatch();
-  const productList = useSelector(productListSelector);
-  const productTypes = useSelector(productTypeListSelector);
+  const productList = useSelector(productsRemainingSelector);
+  const productTypes = useSelector(productTypeRemainingSelector);
+  console.log(productList);
 
   const ProductRows = productList;
   const ProductTypeRows = productTypes;
@@ -49,6 +55,12 @@ const ProductDataTable = () => {
         .then(() => dispatch(getAllProductType(malsp)))
         .catch((error) => console.log(error));
     }
+  };
+  const handleProductChange = (searchValue) => {
+    dispatch(filterProduct(searchValue));
+  };
+  const handleProductTypeChange = (searchValue) => {
+    dispatch(filterProductType(searchValue));
   };
   useEffect(() => {
     dispatch(loadAllProducts());
@@ -104,6 +116,16 @@ const ProductDataTable = () => {
       <div className="datatable">
         <div className="datatableTitle">
           <span>Product List</span>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => {
+                handleProductChange(e.target.value);
+              }}
+            />
+            <SearchIcon />
+          </div>
           <Link to={link}>
             <button className="addBtn">Add New Product</button>
           </Link>
@@ -126,6 +148,14 @@ const ProductDataTable = () => {
       <div className="datatable">
         <div className="datatableTitle">
           <span>Product Type List</span>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => handleProductTypeChange(e.target.value)}
+            />
+            <SearchIcon />
+          </div>
           <Link to={typelink}>
             <button className="addBtn">Add New Product Type</button>
           </Link>

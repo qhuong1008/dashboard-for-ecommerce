@@ -21,6 +21,9 @@ const deleteProductById = async (id) => {
 const deleteProductTypeById = async (id) => {
   return await axiosInstance.post(`/api/loaisanpham/delete/${id}`);
 };
+const editProduct = async (sanpham) => {
+  return await axiosInstance.post("/api/sanpham/edit", sanpham);
+};
 export {
   getAllProducts,
   getProductById,
@@ -29,4 +32,5 @@ export {
   addProductType,
   deleteProductById,
   deleteProductTypeById,
+  editProduct,
 };

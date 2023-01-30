@@ -46,3 +46,17 @@
     cursor: pointer;
   }
 }
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid lightgray;
+  width: 300px;
+  input {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    width: 100%;
+  }
+}

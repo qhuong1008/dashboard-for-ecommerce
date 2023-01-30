@@ -4,9 +4,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userListSelector } from "../../redux/selectors";
-import { loadUserList, deleteUserById } from "../../redux/actions/UserAction";
+import {
+  userListSelector,
+  usersRemainingSelector,
+} from "../../redux/selectors";
+import {
+  loadUserList,
+  deleteUserById,
+  FilterUser,
+} from "../../redux/actions/UserAction";
 import Loading from "../../components/Loading/Loading";
+import SearchIcon from "@mui/icons-material/Search";
 
 const UserDataTable = () => {
   // get links
@@ -17,7 +25,7 @@ const UserDataTable = () => {
 
   // get data
   const dispatch = useDispatch();
-  const userList = useSelector(userListSelector);
+  const userList = useSelector(usersRemainingSelector);
   const userRows = userList;
 
   const handleDeleteUser = (id) => {
@@ -28,6 +36,9 @@ const UserDataTable = () => {
         .then(() => dispatch(loadUserList()))
         .catch((error) => console.log(error));
     }
+  };
+  const handleUserChange = (searchValue) => {
+    dispatch(FilterUser(searchValue));
   };
   useEffect(() => {
     dispatch(loadUserList());
@@ -60,6 +71,14 @@ const UserDataTable = () => {
       <div className="datatable">
         <div className="datatableTitle">
           <span>User List</span>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => handleUserChange(e.target.value)}
+            />
+            <SearchIcon />
+          </div>
           <Link to={link}>
             <button className="addBtn">Add New User</button>
           </Link>

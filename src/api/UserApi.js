@@ -11,4 +11,7 @@ const deleteUserById = async (id) => {
 const addUser = async (user) => {
   return await axiosInstance.post("/api/nguoidung/add", user);
 };
-export { getAllUsers, getUserById, deleteUserById, addUser };
+const editUser = async (user) => {
+  return await axiosInstance.post("/api/nguoidung/edit", user);
+};
+export { getAllUsers, getUserById, deleteUserById, addUser, editUser };
