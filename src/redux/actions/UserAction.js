@@ -3,6 +3,9 @@ import { UserApi } from "../../api/index";
 export const LOAD_USER_BEGIN = "LOAD_USER_BEGIN";
 export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
 export const LOAD_USER_FAIL = "LOAD_USER_FAIL";
+export const LOAD_ADMIN_BEGIN = "LOAD_ADMIN_BEGIN";
+export const LOAD_ADMIN_SUCCESS = "LOAD_ADMIN_SUCCESS";
+export const LOAD_ADMIN_FAIL = "LOAD_ADMIN_FAIL";
 export const LOAD_SINGLE_USER_BEGIN = "LOAD_SINGLE_USER_BEGIN";
 export const LOAD_SINGLE_USER_SUCCESS = "LOAD_SINGLE_USER_SUCCESS";
 export const LOAD_SINGLE_USER_FAIL = "LOAD_SINGLE_USER_FAIL";
@@ -28,6 +31,24 @@ export const loadUserList = () => async (dispatch) => {
     .catch((error) => {
       dispatch({
         type: LOAD_USER_FAIL,
+        payload: error,
+      });
+    });
+};
+export const loadAdminList = () => async (dispatch) => {
+  dispatch({
+    type: LOAD_ADMIN_BEGIN,
+  });
+  UserApi.getAllAdmins()
+    .then((response) => {
+      dispatch({
+        type: LOAD_ADMIN_SUCCESS,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: LOAD_ADMIN_FAIL,
         payload: error,
       });
     });

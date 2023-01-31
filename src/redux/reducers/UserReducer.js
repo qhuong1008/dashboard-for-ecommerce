@@ -2,6 +2,9 @@ import {
   LOAD_USER_BEGIN,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  LOAD_ADMIN_BEGIN,
+  LOAD_ADMIN_SUCCESS,
+  LOAD_ADMIN_FAIL,
   LOAD_SINGLE_USER_BEGIN,
   LOAD_SINGLE_USER_SUCCESS,
   LOAD_SINGLE_USER_FAIL,
@@ -13,9 +16,11 @@ import {
   EDIT_USER_FAIL,
   FILTER_USER,
 } from "../actions/UserAction";
+import { SIGNIN_SUCCESS, SIGNIN_FAIL } from "../actions/signinAction";
 
 const initialState = {
   userList: [],
+  adminList: [],
   user: {},
   userFilter: "",
   loading: false,
@@ -36,6 +41,22 @@ export const UserReducer = (state = initialState, action) => {
         userList: action.payload,
       };
     case LOAD_USER_FAIL:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+    case LOAD_ADMIN_BEGIN:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOAD_ADMIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        adminList: action.payload,
+      };
+    case LOAD_ADMIN_FAIL:
       return {
         ...state,
         error: action.payload.error,
@@ -85,6 +106,16 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         userFilter: action.payload,
+      };
+    case SIGNIN_SUCCESS:
+      return {
+        ...state,
+        nguoidung: action.payload,
+      };
+    case SIGNIN_FAIL:
+      return {
+        ...state,
+        error: action.payload.error,
       };
     default:
       return state;

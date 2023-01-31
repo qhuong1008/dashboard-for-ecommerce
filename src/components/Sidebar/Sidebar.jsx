@@ -18,6 +18,16 @@ import { useState, useContext } from "react";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
+
+  let option = "Login";
+  if (user !== null) {
+    option = "Logout";
+  }
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+  };
 
   return (
     <div className="sidebar">
@@ -84,15 +94,18 @@ const Sidebar = () => {
             <span>Settings</span>
           </li>
           <p className="sidebar-title">user</p>
-
-          <li>
-            <AssignmentIndIcon className="icon" />
-            <span>Profiles</span>
-          </li>
-          <li>
-            <LogoutIcon className="icon" />
-            <span>Logout</span>
-          </li>
+          <Link to="/profile">
+            <li>
+              <AssignmentIndIcon className="icon" />
+              <span>Profiles</span>
+            </li>
+          </Link>
+          <Link to="/login" onClick={handleLogout}>
+            <li>
+              <LogoutIcon className="icon" />
+              <span>{option}</span>
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="sidebar-bottom">

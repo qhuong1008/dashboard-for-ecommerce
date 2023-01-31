@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 
 export const userListSelector = (state) => state.user.userList;
+export const adminListSelector = (state) => state.user.adminList;
 export const userSelector = (state) => state.user.user;
 export const userFilterSelector = (state) => state.user.userFilter;
 export const productListSelector = (state) => state.product.productList;

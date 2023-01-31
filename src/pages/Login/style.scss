@@ -1,0 +1,82 @@
+$blue: #4285f4;
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    45deg,
+    rgba(66, 183, 245, 0.8) 0%,
+    rgba(66, 245, 189, 0.4) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+.login-form {
+  height: 470px;
+  width: 500px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgb(0 0 0 / 10%);
+  padding: 60px 50px;
+}
+.login-header {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: $blue;
+  margin-bottom: 10px;
+}
+.login-content {
+  display: flex;
+  flex-direction: column;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  label {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  input {
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-top: 5px;
+  }
+}
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  input {
+    margin-right: 10px;
+  }
+}
+
+.form-remember {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.login-btn {
+  background-color: $blue;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 15px;
+  color: white;
+  font-weight: 600;
+  font-size: 19px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.notmember {
+  margin-top: 15px;
+}

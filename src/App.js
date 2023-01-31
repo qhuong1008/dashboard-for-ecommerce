@@ -16,6 +16,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import EditUser from "./pages/Edit/EditUser";
 import EditProduct from "./pages/Edit/EditProduct";
 import EditOrder from "./pages/Edit/EditOrder";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -24,7 +25,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
+            <Route path="/homepage" index element={<Home />} />
+            <Route path="" index element={<Home />} />
+            <Route path="/profile" index element={<Profile />} />
             <Route path="login" element={<Login />} />
             <Route path="users">
               <Route index element={<List listType="User" />} />

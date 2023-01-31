@@ -2,6 +2,9 @@ import { axiosInstance } from "../api/types/axios";
 const getAllUsers = async () => {
   return await axiosInstance.get("/api/nguoidung");
 };
+const getAllAdmins = async () => {
+  return await axiosInstance.get("/api/admin");
+};
 const getUserById = async (id) => {
   return await axiosInstance.get(`/api/nguoidung/${id}`);
 };
@@ -14,4 +17,11 @@ const addUser = async (user) => {
 const editUser = async (user) => {
   return await axiosInstance.post("/api/nguoidung/edit", user);
 };
-export { getAllUsers, getUserById, deleteUserById, addUser, editUser };
+export {
+  getAllUsers,
+  getUserById,
+  deleteUserById,
+  addUser,
+  editUser,
+  getAllAdmins,
+};

@@ -25,7 +25,9 @@ const Home = () => {
         </div>
         <div className="list-container">
           <div className="list-title">Lastest Transactions</div>
-          <List />
+          <div className="list-content">
+            <List />
+          </div>
         </div>
       </div>
     </div>
